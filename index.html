@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="calculator">
-        <div id="display">323</div>
+        <div id="display">
+            <div id="entered-so-far"></div>
+            <div id="enter-display"></div>
+        </div>
         <div id="row-one" class="row">
             <button class="button clear-all">AC</button>
             <button class="button delete">DEL</button>
-            <button class="button divide">%</button>
+            <button class="button divide">/</button>
         <div id="row-two" class="row">
             <button class="number seven">7</button>
             <button class="number eight">8</button>

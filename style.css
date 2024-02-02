@@ -1,0 +1,13 @@
+#display {
+    border: 1px solid black;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#entered-so-far,
+#enter-display {
+    border: 1px solid black;
+}

@@ -1,4 +1,5 @@
-let display = document.querySelector("#display")
+let enterDisplay = document.querySelector("#enter-display")
+let enteredSoFar = document.querySelector("#entered-so-far")
 
 let one = document.querySelector(".one");
 let two = document.querySelector(".two");
@@ -41,13 +42,15 @@ let currentOperator = "";
 let secondNumber = "";
 
 function operate(firstNumber, operator, secondNumber) {
+    firstNumber = parseInt(firstNumber);
+    secondNumber = parseInt(secondNumber);
     if (operator == "+") {
         return add(firstNumber, secondNumber);
     } else if (operator == "-") {
         return subtract(firstNumber, secondNumber);
-    } else if (operator == "*") {
+    } else if (operator == "x") {
         return multiply(firstNumber, secondNumber);
-    } else {
+    } else if (operator == "/") {
         return divide(firstNumber, secondNumber);
     }
 }
@@ -55,27 +58,31 @@ function operate(firstNumber, operator, secondNumber) {
 let isThereOperator = false;
 
 function displayOperator(operator) {
-    if (isThereOperator == false) {
+    if (isThereOperator == false ) {
+        enterDisplay.replaceChildren();
         let newOperator = document.createTextNode(operator);
-        display.appendChild(newOperator);
+        let enteredFirstNumber = document.createTextNode(firstNumber);
+        enteredSoFar.appendChild(enteredFirstNumber);
+        enteredSoFar.appendChild(newOperator);
         currentOperator = operator;
         isThereOperator = true;
+        isSecondNumber = true;
     } else if(operator != currentOperator) {
-        display.removeChild(display.lastChild);
-        let newOperator = document.createTextNode(operator);
-        display.appendChild(newOperator);
         currentOperator = operator;
+        enteredSoFar.removeChild(enteredSoFar.lastChild);
+        let newOperator = document.createTextNode(operator);
+        enteredSoFar.appendChild(newOperator);
     }
 }
 
 function addNumber(number) {
     let nextNumber = document.createTextNode(number);
-    display.appendChild(nextNumber);
+    enterDisplay.appendChild(nextNumber);
 }
 
-let checkIfSecondNumber = false;
+let isSecondNumber = false;
 function checkNumberPosition(number) {
-    if (checkIfSecondNumber == true) {
+    if (isSecondNumber == true) {
         secondNumber += number;
     } else {
         firstNumber += number;
@@ -147,7 +154,14 @@ multiplyOperator.addEventListener("click", function(){
 })
 
 divideOperator.addEventListener("click", function(){
-    displayOperator("%");
+    displayOperator("/");
+})
+equals.addEventListener("click", function(){
+    let result = operate(firstNumber, currentOperator, secondNumber);
+    enterDisplay.replaceChildren();
+    enteredSoFar.replaceChildren();
+    let displayResult = document.createTextNode(result);
+    enterDisplay.appendChild(displayResult);
 })
 
 
