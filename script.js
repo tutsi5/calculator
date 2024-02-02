@@ -55,16 +55,15 @@ function operate(firstNumber, operator, secondNumber) {
 }
 
 let isThereOperator = false;
-let currentResult = "";
 
 function operatorSelected(operator) { 
     if (firstNumber != "") {
         if (secondNumber != "") {
-            currentResult = operate(firstNumber, currentOperator, secondNumber);
-            firstNumber = currentResult;
+            result = operate(firstNumber, currentOperator, secondNumber);
+            firstNumber = result;
             currentOperator = operator;
             display.replaceChildren();
-            let displayResult = document.createTextNode(currentResult);
+            let displayResult = document.createTextNode(result);
             display.appendChild(displayResult);
             secondNumber = "";
         } else {
@@ -76,8 +75,17 @@ function operatorSelected(operator) {
 }
 
 function addNumber(number) {
-    if (isThereOperator == true) {
+    if (isThereOperator == true && secondNumber == "") {
         display.replaceChildren();
+    }
+    if (doneOperation == true) {
+        doneOperation = false;
+        display.replaceChildren();
+        firstNumber = "";
+        secondNumber = "";
+        currentOperator = "";
+        isSecondNumber = false;
+        isThereOperator = false;
     }
     let nextNumber = document.createTextNode(number);
     display.appendChild(nextNumber);
@@ -94,21 +102,27 @@ function checkNumberPosition(number) {
 }
 
 let result = "";
+let doneOperation = false;
 
 equals.addEventListener("click", function(){
-    if (firstNumber != 0 && secondNumber != 0) {
-    operationDone = true;
-
+    if (firstNumber != "" && secondNumber != "") {
     result = operate(firstNumber, currentOperator, secondNumber);
     display.replaceChildren();
     let displayResult = document.createTextNode(result);
     display.appendChild(displayResult);
     firstNumber = result;
     secondNumber = "";
+    doneOperation = true;
     }
 })
 
-let operationDone = false;
+// clearAll.addEventListener("click", function(){
+//     firstNumber = "";
+//     secondNumber = "";
+//     currentOperator = "";
+//     isSecondNumber = false;
+//     isThereOperator = false;
+// })
 
 //Numbers
 one.addEventListener("click", function(){
@@ -161,7 +175,7 @@ zero.addEventListener("click", function(){
     checkNumberPosition("0");
 })
 
-//Operators and deletion
+//Operators
 addOperator.addEventListener("click", function(){
     operatorSelected("+");
 })
