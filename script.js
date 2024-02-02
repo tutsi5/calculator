@@ -76,6 +76,14 @@ function displayOperator(operator) {
 }
 
 function addNumber(number) {
+    if (operationDone == true) {
+        enterDisplay.replaceChildren();
+        operationDone = false;
+        isThereOperator = false;
+        isSecondNumber = false;
+        firstNumber = "";
+        secondNumber = "";
+    }
     let nextNumber = document.createTextNode(number);
     enterDisplay.appendChild(nextNumber);
 }
@@ -156,7 +164,10 @@ multiplyOperator.addEventListener("click", function(){
 divideOperator.addEventListener("click", function(){
     displayOperator("/");
 })
+
 equals.addEventListener("click", function(){
+    operationDone = true;
+
     let result = operate(firstNumber, currentOperator, secondNumber);
     enterDisplay.replaceChildren();
     enteredSoFar.replaceChildren();
@@ -164,4 +175,4 @@ equals.addEventListener("click", function(){
     enterDisplay.appendChild(displayResult);
 })
 
-
+let operationDone = false;
