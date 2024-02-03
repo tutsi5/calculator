@@ -21,24 +21,24 @@ let equals = document.querySelector(".equals");
 let dot = document.querySelector(".dot");
 
 function add(a, b) {
-    return a+b;
+    return Math.round((a+b) * 100) / 100;
 }
 
 function subtract(a, b) {
-    return a-b;
+    return Math.round((a-b) * 100) / 100;
 }
 
 function multiply(a, b) {
-    return a*b;
+    return Math.round((a*b) * 100) / 100;
 }
 
 function divide(a, b) {
-    return a/b;
+    return Math.round((a/b) * 100) / 100;
 }
 
 function operate(firstNumber, operator, secondNumber) {
-    firstNumber = parseInt(firstNumber);
-    secondNumber = parseInt(secondNumber);
+    firstNumber = parseFloat(firstNumber);
+    secondNumber = parseFloat(secondNumber);
     if (operator == "+") {
         return add(firstNumber, secondNumber);
     } else if (operator == "-") {
