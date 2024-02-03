@@ -56,7 +56,7 @@ let secondNumber = "";
 let isThereOperator = false;
 
 function operatorSelected(operator) { 
-    if (firstNumber != "") {
+    if (firstNumber !== "") {
         if (secondNumber != "") {
             result = operate(firstNumber, currentOperator, secondNumber);
             firstNumber = result;
@@ -100,7 +100,7 @@ function checkNumberPosition(number) {
 let result = "";
 
 equals.addEventListener("click", function(){
-    if (firstNumber != "" && secondNumber != "") {
+    if (secondNumber != "") {
     result = operate(firstNumber, currentOperator, secondNumber);
     display.replaceChildren();
     let displayResult = document.createTextNode(result);
@@ -112,13 +112,15 @@ equals.addEventListener("click", function(){
     }
 })
 
-// clearAll.addEventListener("click", function(){
-//     firstNumber = "";
-//     secondNumber = "";
-//     currentOperator = "";
-//     isSecondNumber = false;
-//     isThereOperator = false;
-// })
+clearAll.addEventListener("click", function(){
+    display.replaceChildren();
+    result = "";
+    firstNumber = "";
+    secondNumber = "";
+    currentOperator = "";
+    isSecondNumber = false;
+    isThereOperator = false;
+})
 
 //Numbers
 one.addEventListener("click", function(){
