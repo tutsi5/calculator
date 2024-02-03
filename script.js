@@ -12,7 +12,7 @@ let nine = document.querySelector(".nine");
 let zero = document.querySelector(".zero");
 
 let clearAll = document.querySelector(".clear-all");
-let del = document.querySelector(".delete");
+let changeSign = document.querySelector(".change-sign");
 let addOperator = document.querySelector(".add");
 let subtractOperator =  document.querySelector(".subtract");
 let multiplyOperator = document.querySelector(".multiply");
@@ -156,6 +156,28 @@ clearAll.addEventListener("click", function(){
     firstNumberDot = false;
     secondNumberDot = false;
     display.appendChild(beginning);
+})
+
+changeSign.addEventListener("click", function(){
+    if(isThereOperator == true) {
+        secondNumber = secondNumber*(-1);
+        display.replaceChildren();
+        let signChanged = document.createTextNode(secondNumber);
+        display.appendChild(signChanged);
+    } else if (result != "") {
+        if (firstNumber == result) {
+            firstNumber = firstNumber*(-1);
+        }
+        result = result*(-1);
+        display.replaceChildren();
+        let signChanged = document.createTextNode(result);
+        display.appendChild(signChanged);
+    } else {
+        firstNumber = firstNumber*(-1);
+        display.replaceChildren();
+        let signChanged = document.createTextNode(firstNumber);
+        display.appendChild(signChanged);
+    }
 })
 
 let firstNumberDot = false;
