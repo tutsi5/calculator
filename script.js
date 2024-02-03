@@ -70,6 +70,9 @@ let firstNumber = "";
 let currentOperator = "";
 let secondNumber = "";
 let isThereOperator = false;
+let beginning = document.createTextNode("0");
+display.appendChild(beginning);
+
 
 function operatorSelected(operator) { 
     if (firstNumber !== "") {
@@ -82,6 +85,8 @@ function operatorSelected(operator) {
                 let displayResult = document.createTextNode(result);
                 display.appendChild(displayResult);
                 secondNumber = "";
+                firstNumberDot = false;
+                secondNumberDot = false;
             } 
         } else {
             isThereOperator = true;
@@ -100,6 +105,7 @@ function addNumber(number) {
     if (isThereOperator == true && secondNumber == "") {
         display.replaceChildren();
     }
+
     if (currentOperator == "" && firstNumber == result) {
         display.replaceChildren();
         firstNumber = "";
@@ -133,6 +139,8 @@ equals.addEventListener("click", function(){
             secondNumber = "";
             isThereOperator = false;
             currentOperator = "";
+            firstNumberDot = false;
+            secondNumberDot = false;
         } 
     }
 })
@@ -145,6 +153,25 @@ clearAll.addEventListener("click", function(){
     currentOperator = "";
     isSecondNumber = false;
     isThereOperator = false;
+    firstNumberDot = false;
+    secondNumberDot = false;
+    display.appendChild(beginning);
+})
+
+let firstNumberDot = false;
+let secondNumberDot = false;
+dot.addEventListener("click", function(){
+    if (firstNumberDot == false && isSecondNumber == false) {
+        checkNumberPosition(".");
+        let displayDot = document.createTextNode(".");
+        display.appendChild(displayDot);
+        firstNumberDot = true;
+    } else if (secondNumberDot == false && isSecondNumber == true && secondNumber !== "") {
+        checkNumberPosition(".");
+        let displayDot = document.createTextNode(".");
+        display.appendChild(displayDot);
+        secondNumberDot = true;
+    }
 })
 
 //Numbers
