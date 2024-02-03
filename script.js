@@ -36,10 +36,6 @@ function divide(a, b) {
     return a/b;
 }
 
-let firstNumber = "";
-let currentOperator = "";
-let secondNumber = "";
-
 function operate(firstNumber, operator, secondNumber) {
     firstNumber = parseInt(firstNumber);
     secondNumber = parseInt(secondNumber);
@@ -54,6 +50,9 @@ function operate(firstNumber, operator, secondNumber) {
     }
 }
 
+let firstNumber = "";
+let currentOperator = "";
+let secondNumber = "";
 let isThereOperator = false;
 
 function operatorSelected(operator) { 
@@ -78,14 +77,11 @@ function addNumber(number) {
     if (isThereOperator == true && secondNumber == "") {
         display.replaceChildren();
     }
-    if (doneOperation == true) {
-        doneOperation = false;
+    if (currentOperator == "" && firstNumber == result) {
         display.replaceChildren();
         firstNumber = "";
         secondNumber = "";
-        currentOperator = "";
         isSecondNumber = false;
-        isThereOperator = false;
     }
     let nextNumber = document.createTextNode(number);
     display.appendChild(nextNumber);
@@ -102,7 +98,6 @@ function checkNumberPosition(number) {
 }
 
 let result = "";
-let doneOperation = false;
 
 equals.addEventListener("click", function(){
     if (firstNumber != "" && secondNumber != "") {
@@ -112,7 +107,8 @@ equals.addEventListener("click", function(){
     display.appendChild(displayResult);
     firstNumber = result;
     secondNumber = "";
-    doneOperation = true;
+    isThereOperator = false;
+    currentOperator = "";
     }
 })
 
