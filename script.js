@@ -50,6 +50,22 @@ function operate(firstNumber, operator, secondNumber) {
     }
 }
 
+function isTheResultPossible(result) {
+    if (result == Infinity || result == -Infinity || result == NaN) {
+        display.replaceChildren();
+        let displayResult = document.createTextNode("Certainly not");
+        display.appendChild(displayResult);
+        firstNumber = "";
+        secondNumber = "";
+        currentOperator = "";
+        isThereOperator = false;
+        isSecondNumber = false;
+        return false;
+    } else {
+        return true;
+    }
+}
+
 let firstNumber = "";
 let currentOperator = "";
 let secondNumber = "";
@@ -59,12 +75,14 @@ function operatorSelected(operator) {
     if (firstNumber !== "") {
         if (secondNumber != "") {
             result = operate(firstNumber, currentOperator, secondNumber);
-            firstNumber = result;
-            currentOperator = operator;
-            display.replaceChildren();
-            let displayResult = document.createTextNode(result);
-            display.appendChild(displayResult);
-            secondNumber = "";
+            if (isTheResultPossible(result)) {
+                firstNumber = result;
+                currentOperator = operator;
+                display.replaceChildren();
+                let displayResult = document.createTextNode(result);
+                display.appendChild(displayResult);
+                secondNumber = "";
+            } 
         } else {
             isThereOperator = true;
             currentOperator = operator;
@@ -74,6 +92,11 @@ function operatorSelected(operator) {
 }
 
 function addNumber(number) {
+    if (result == Infinity || result == -Infinity || result == NaN){
+        result = "";
+        display.replaceChildren;
+    }
+
     if (isThereOperator == true && secondNumber == "") {
         display.replaceChildren();
     }
@@ -101,14 +124,16 @@ let result = "";
 
 equals.addEventListener("click", function(){
     if (secondNumber != "") {
-    result = operate(firstNumber, currentOperator, secondNumber);
-    display.replaceChildren();
-    let displayResult = document.createTextNode(result);
-    display.appendChild(displayResult);
-    firstNumber = result;
-    secondNumber = "";
-    isThereOperator = false;
-    currentOperator = "";
+        result = operate(firstNumber, currentOperator, secondNumber);
+        if (isTheResultPossible(result)) {
+            display.replaceChildren();
+            let displayResult = document.createTextNode(result);
+            display.appendChild(displayResult);
+            firstNumber = result;
+            secondNumber = "";
+            isThereOperator = false;
+            currentOperator = "";
+        } 
     }
 })
 
