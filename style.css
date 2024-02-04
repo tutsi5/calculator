@@ -11,7 +11,7 @@ body {
 
 #container {
     border: 13px solid rgb(80, 79, 79);
-    border-radius: 6px;
+    border-radius: 12px;
     background-color: black;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 24px 25px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
@@ -20,7 +20,6 @@ body {
     margin: 0;
     padding: 0;
     border: 7px solid rgb(37, 37, 37);
-    border-radius: 5px;
     background-color: black;
     display: flex;
     flex-direction: column;
