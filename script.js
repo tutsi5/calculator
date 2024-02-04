@@ -20,6 +20,11 @@ let divideOperator = document.querySelector(".divide");
 let equals = document.querySelector(".equals");
 let dot = document.querySelector(".dot");
 
+let displayError = document.createElement("div");
+let errorMsg = document.createTextNode("Certainly not");
+displayError.appendChild(errorMsg);
+displayError.classList.add("error-message");
+
 function add(a, b) {
     return Math.round((a+b) * 100) / 100;
 }
@@ -51,15 +56,16 @@ function operate(firstNumber, operator, secondNumber) {
 }
 
 function isTheResultPossible(result) {
-    if (result == Infinity || result == -Infinity || result == NaN) {
+    if (result == Infinity || result == -Infinity || Number.isNaN(result)) {
         display.replaceChildren();
-        let displayResult = document.createTextNode("Certainly not");
-        display.appendChild(displayResult);
+        display.appendChild(displayError);
         firstNumber = "";
         secondNumber = "";
         currentOperator = "";
         isThereOperator = false;
         isSecondNumber = false;
+        firstNumberDot = false;
+        secondNumberDot = false;
         return false;
     } else {
         return true;
@@ -97,7 +103,7 @@ function operatorSelected(operator) {
 }
 
 function addNumber(number) {
-    if (result == Infinity || result == -Infinity || result == NaN){
+    if (result == Infinity || result == -Infinity || Number.isNaN(result)){
         result = "";
         display.replaceChildren;
     }
