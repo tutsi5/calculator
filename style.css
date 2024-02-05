@@ -102,6 +102,7 @@ button {
     text-wrap: nowrap;
     padding-right: 10px;
     color: rgb(27, 26, 26);
+    overflow: hidden;
 }
 
 .error-message {
